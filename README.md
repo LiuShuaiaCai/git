@@ -22,5 +22,6 @@
 	git branch dev 创建dev分支
 	git checkout dev 选择dev分支
 	以上两个命令简写为： git checkout -b dev
+* git解决冲突：
 	
 
