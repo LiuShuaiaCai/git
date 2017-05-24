@@ -15,3 +15,12 @@
 	2、返回上100个版本：git reset --hard HEAD~100
 	3、根据日志编号返回：git reset --hard [number]
 
+* git checkout -- [filename] 撤销修改
+
+
+* git 分支
+	git branch dev 创建dev分支
+	git checkout dev 选择dev分支
+	以上两个命令简写为： git checkout -b dev
+	
+
