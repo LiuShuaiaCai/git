@@ -23,4 +23,5 @@
 	git checkout dev 选择dev分支
 	以上两个命令简写为： git checkout -b dev
 	
-
+	git merge dev 合并dev分支
+	git branch -d dev 删除分支
