@@ -39,6 +39,19 @@
 	+ 删除场景：git stash drop
 	+ 恢复、删除：git stash pop 
 
+* 删除远程分支  
+    + git branch -r -d origin/branch-name  
+    + git push origin :branch-name  
+
+
+* 要删除服务器远端的分支，则执行如下所示的命令：
+	+ git push origin –delete 分支名
+
+* 如果是要删除本地已经合并了的分支，则执行：
+	+ git branch –d 分支名
+* 下图中的命令是为了删除本地未合并的分支：
+ 	+ git branch –D 分支名
+
 ===========================================================================
 分支：
 线上：master
@@ -47,3 +60,47 @@ dev
 
 git merge 合并分支
 study hard
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+## 项目迭代过程：
+* 创建新的分支，在新的分支上开发本次的迭代
+	
+	git checkout -b feature/20170620_lsc_XXX
+
+* 开发完成，上传测试环境，通知测试人员测试
+	
+	+ 获取新的代码 
+		git pull origin feature/20170620_lsc_XXX
+	+ 把本次修改内容添加到暂存区
+		git add -A
+	+ 把暂存区内容提交到版本库
+		git commit -am 'update'
+	+ 把本次的修改推送到远程仓库
+		git push origin feature/20170620_lsc_XXX
+
+* 上传beta环境：每次迭代都会新建一个公共分支 feature/20170620_ielts_common
+	
+	+ 获取（fetch）远程的公共分支（feature/20170620_ielts_common）
+		git fetch origin feature/20170620_ielts_common:feature/20170620_ielts_common
+	+ 在公共分支（feature/20170620_ielts_common）中合并本次迭代分支（feature/20170620_lsc_XXX）
+		- 拉取代码
+		git pull origin 20170620_ielts_common
+		- 合并分支
+		git merge feature/20170620_lsc_XXX
+	+ 把合并后的公共分支（feature/20170620_ielts_common）推送到远程
+		git status -sb
+		git push origin feature/20170620_ielts_common
+
+* 解决冲突
+	
+	+ 切换到dev分支
+		git checkout dev
+	+ 拉取远程的代码
+		git pull
+	+ 合并当前修改的分支（feature/20170620_lsc_XXX）
+		git merge feature/20170620_lsc_XXX
+	+ 解决冲突
+	+ 把修改后的dev推送远程
+		git push
+
